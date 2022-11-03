@@ -1,0 +1,30 @@
+﻿@model Product
+
+@{
+    Layout = "_LayoutProductDetail";
+}
+<table class="table table-light">
+    <thead class="table table-dark">
+        <tr>
+            <th>Name</th>
+            <th>Price (VND)</th>
+            <th>Stock</th>
+            <th>Image</th>
+            <th>Status</th>
+            <th>Function</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Model.Name</td>
+            <td>@Model.Price</td>
+            <td>@Model.Stock</td>
+            <td>@Model.Image</td>
+            <td>@Model.Status</td>
+            <td><a asp-action="Detail" asp-route-id="@Model.Id class="btn btn-sucess">Add To Cart</a></td>
+            
+        </tr>
+        
+    </tbody>
+</table>
+  <button> <a asp-action="Index" class="btn btn-success">&lt Back To List Product</a></button>
