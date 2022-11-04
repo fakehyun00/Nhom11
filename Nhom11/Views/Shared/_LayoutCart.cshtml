@@ -39,14 +39,15 @@
 			<div class="top-bar">
 				<div class="content-topbar flex-sb-m h-full container">
 					<div class="left-top-bar">
-						Free shipping for standard order over $100
+						Free shipping for standard order over 199.000 VND
 					</div>
 
 					<div class="right-top-bar flex-w h-full">
 
-						<a href="#" class="flex-c-m trans-04 p-lr-25">
+						@{
+						<a asp-controller="Home" asp-action="Login" class="flex-c-m trans-04 p-lr-25">
 							My Account
-						</a>
+						</a>}
 
 						<a href="#" class="flex-c-m trans-04 p-lr-25">
 							Register
@@ -67,22 +68,30 @@
 					<div class="menu-desktop">
 						<ul class="main-menu">
 							<li>
-								<a href="index.html">Home</a>
+								@{
+								<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+								}
 								
 							</li>
 
 							<li>
-								<a href="product.html">Shop</a>
+								@{
+								<a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Index">Shop</a>
+								}
 							</li>
 
 							<li class="label1" data-label1="hot">
-								<a href="shoping-cart.html">Features</a>
+								@{
+								<a class="nav-link text-dark" asp-area="" asp-controller="Carts" asp-action="Index">Features</a>
+								}
 							</li>
 
 							
 
 							<li>
-								<a href="contact.html">Contact</a>
+								@{
+								<a class="nav-link text-dark" asp-area="" asp-controller="Contacts" asp-action="Index">Features</a>
+								}
 							</li>
 						</ul>
 					</div>	
@@ -161,7 +170,9 @@
 
 			<ul class="main-menu-m">
 				<li>
-					<a href="index.html">Home</a>
+					@{
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+							}
 					
 					<span class="arrow-main-menu-m">
 						<i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -169,17 +180,23 @@
 				</li>
 
 				<li>
-					<a href="product.html">Shop</a>
+					@{
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Index">Shop</a>
+							}
 				</li>
 
 				<li>
-					<a href="shoping-cart.html" class="label1 rs1" data-label1="hot">Features</a>
+					@{
+								<a class="nav-link text-dark" asp-area="" asp-controller="Carts" asp-action="Index">Features</a>
+					}
 				</li>
 
 				
 
 				<li>
-					<a href="contact.html">Contact</a>
+					@{
+								<a class="nav-link text-dark" asp-area="" asp-controller="Contacts" asp-action="Index">Features</a>
+					}
 				</li>
 			</ul>
 		</div>
@@ -318,53 +335,9 @@
 									<th class="column-5">Total</th>
 								</tr>
 
-								<tr class="table_row">
-									<td class="column-1">
-										<div class="how-itemcart1">
-											<img src="images/item-cart-04.jpg" alt="IMG">
-										</div>
-									</td>
-									<td class="column-2">Fresh Strawberries</td>
-									<td class="column-3">$ 36.00</td>
-									<td class="column-4">
-										<div class="wrap-num-product flex-w m-l-auto m-r-0">
-											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-minus"></i>
-											</div>
+								
 
-											<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product1" value="1">
-
-											<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-plus"></i>
-											</div>
-										</div>
-									</td>
-									<td class="column-5">$ 36.00</td>
-								</tr>
-
-								<tr class="table_row">
-									<td class="column-1">
-										<div class="how-itemcart1">
-											<img src="images/item-cart-05.jpg" alt="IMG">
-										</div>
-									</td>
-									<td class="column-2">Lightweight Jacket</td>
-									<td class="column-3">$ 16.00</td>
-									<td class="column-4">
-										<div class="wrap-num-product flex-w m-l-auto m-r-0">
-											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-minus"></i>
-											</div>
-
-											<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product2" value="1">
-
-											<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-plus"></i>
-											</div>
-										</div>
-									</td>
-									<td class="column-5">$ 16.00</td>
-								</tr>
+								
 							</table>
 						</div>
 
@@ -399,7 +372,7 @@
 
 							<div class="size-209">
 								<span class="mtext-110 cl2">
-									$79.65
+									
 								</span>
 							</div>
 						</div>
@@ -457,7 +430,7 @@
 
 							<div class="size-209 p-t-1">
 								<span class="mtext-110 cl2">
-									$79.65
+									
 								</span>
 							</div>
 						</div>
@@ -471,7 +444,7 @@
 		</div>
 	</form>
 		
-	@RenderBody();
+	@RenderBody()
 		
 
 	<!-- Footer -->
@@ -552,7 +525,7 @@
 					</h4>
 
 					<p class="stext-107 cl7 size-201">
-						Any questions? Let us know in store at 65 Huynh Thuc Khang St, District 1, TPHCM or call us on (+84) 96 716 6879
+						65 Huynh Thuc Khang St, District 1, HCM city
 					</p>
 
 					<div class="p-t-27">
