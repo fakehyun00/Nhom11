@@ -45,7 +45,7 @@
 			<div class="top-bar">
 				<div class="content-topbar flex-sb-m h-full container">
 					<div class="left-top-bar">
-						Free shipping for standard order over $100
+						Free shipping for standard order over 199.000 VND
 					</div>
 
 					<div class="right-top-bar flex-w h-full">
@@ -66,6 +66,9 @@
 				<nav class="limiter-menu-desktop container">
 					
 					<!-- Logo desktop -->		
+										<a href="#" class="logo">
+						<img src="~/images/icons/logo-01.png" alt="IMG-LOGO">
+					</a>
 
 					<!-- Menu desktop -->
 					<div class="menu-desktop">
@@ -83,13 +86,17 @@
 							</li>
 
 							<li class="label1" data-label1="hot">
-								<a href="shoping-cart.html">Features</a>
+								@{
+								<a class="nav-link text-dark" asp-area="" asp-controller="Carts" asp-action="Index">Features</a>
+								}
 							</li>
 
 							
 
 							<li>
-								<a href="contact.html">Contact</a>
+								@{
+								<a class="nav-link text-dark" asp-area="" asp-controller="Contacts" asp-action="Index">Features</a>
+								}
 							</li>
 						</ul>
 					</div>	
@@ -319,15 +326,61 @@
 
 							<ul>
 								
+								
 								<li class="p-b-6">
 									<a href="#" class="filter-link stext-106 trans-04">
-										Price: Low to High
+										Team: Arsenan
 									</a>
 								</li>
 
 								<li class="p-b-6">
 									<a href="#" class="filter-link stext-106 trans-04">
-										Price: High to Low
+										Team: Barcelona
+									</a>
+								</li>
+
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">
+										Team: Bayern Munich
+									</a>
+								</li>
+
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">
+										Team: Chelsea
+									</a>
+								</li>
+
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">
+										Team: Dortmund
+									</a>
+								</li>
+
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">
+										Team: Liverpool
+									</a>
+								</li>
+
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">
+										Team: MU
+									</a>
+								</li>
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">
+										Team: Mancity
+									</a>
+								</li>
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">
+										Team: Psg
+									</a>
+								</li>
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">
+										Team: Realmarid
 									</a>
 								</li>
 							</ul>
@@ -370,8 +423,15 @@
 					
 
 			</div>
+			<div class="row isotope-grid">
+
+				
+		
+			</div>
+@RenderBody()
 	</section>
-		@RenderBody()
+
+
 				<!-- filter -->
 
 	<!-- Footer -->
@@ -453,7 +513,7 @@
 					</h4>
 
 					<p class="stext-107 cl7 size-201">
-						65 Huynh Thuc Khang St, District 1, HCM city or call us on (+84) 96 716 6879
+						65 Huynh Thuc Khang St, District 1, HCM city 
 					</p>
 
 					<div class="p-t-27">
