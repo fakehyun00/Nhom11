@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Product>
+@{
+    Layout = "_LayoutProduct";
+}
+<div class="p-b-10">
+				<h3 class="ltext-103 cl5">
+					LIST ALL PRODUCT
+				</h3>
+			</div>
+
+<table class="table table-light">
+    <thead class="table table-dark">
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Price (VND)</th>
+            <th>Stock</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+         @foreach (var item in Model)
+            {         
+            <tr>        
+            <td><a asp-action="Detail" asp-route-id="@item.Id">@item.Image</a></td>
+            <td>@item.Name</td>
+            <td>@item.Price</td>
+            <td>@item.Stock</td>
+            <td>@item.Status</td> 
+            </tr> 
+            }
+            
+    </tbody>
+</table>
