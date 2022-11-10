@@ -23,13 +23,13 @@
          @foreach (var item in Model)
             {         
             <tr>        
-            <td><a asp-action="Detail" asp-route-id="@item.Id">@item.Image</a></td>
-            <td>@item.Name</td>
+            <td><img src="~/images/@item.Image/"></td>
+            <td><a asp-action="Detail" asp-route-id="@item.Id">@item.Name</a></td>
             <td>@item.Price</td>
             <td>@item.Stock</td>
             <td>@item.Status</td> 
             </tr> 
             }
-            
+            <a asp-action="Create" class="btn  btn-success">Add Product</a>
     </tbody>
 </table>

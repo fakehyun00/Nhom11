@@ -1,19 +1,23 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Nhom11.Data;
+using Nhom11.Models;
 
 namespace Nhom11.Controllers
 {
     public class ProductsController : Controller
     {
         private WebQuanAoContext _context;
-        public ProductsController(WebQuanAoContext context)
+        private IWebHostEnvironment _environment;
+        public ProductsController(WebQuanAoContext context,IWebHostEnvironment environment)
         {
             _context = context;
+            _environment = environment;
         }
         public IActionResult Index()
         {
-            var products = _context.Products.ToList();
-            return View(products);
+            var products=_context.Products.ToList();
+            
+                return View(products);
         }
         public IActionResult Detail(int? id)
 		{
@@ -31,6 +35,22 @@ namespace Nhom11.Controllers
         public IActionResult Login()
         {
             return View();
+        }
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Create([Bind("Image,ImageFile,Name,Price,Stock,Status")]Product product)
+        {
+            
+            _context.Products.Add(product);
+            _context.SaveChanges();
+            if (product == null)
+            {
+               return NotFound();
+            }
+            return View();      
         }
     }
 }
