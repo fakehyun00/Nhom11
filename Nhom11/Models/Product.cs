@@ -25,6 +25,10 @@ namespace Nhom11.Models
         [DefaultValue(0)]
         public int Price { get; set; } = 0;
 
+        [Display(Name = "Kích cỡ")]
+        public int Size { get; set; }
+
+
         [DisplayName("Tồn kho")]
         [DefaultValue(0)]
         public int Stock { get; set; } = 0;

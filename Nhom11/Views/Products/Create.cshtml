@@ -1,8 +1,10 @@
 ﻿@model Product
-
-<form asp-action="Create" method="POST">
-    <label asp-for="Image">Product Image</label>
-    <input asp-for="Image"/><br />
+    @{
+        Layout="_LayoutProduct";
+    }
+<form asp-action="Create" method="POST"enctype="multipart/form-data">
+    <label asp-for="ImageFile">Product Image</label>
+    <input asp-for="ImageFile" border=1/><br />
 
     <label asp-for="Name">Product Name</label>
     <input asp-for="Name"/><br />
@@ -18,5 +20,5 @@
     <input asp-for="Status"/><br />
 
    
-
+    <a asp-action="Index" class="btn btn-success">Add</a>
 </form>

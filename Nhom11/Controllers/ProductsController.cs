@@ -15,7 +15,7 @@ namespace Nhom11.Controllers
         }
         public IActionResult Index()
         {
-            var products=_context.Products.ToList();
+            var products=_context.Products.Where(p=>p.Size==1 );
             
                 return View(products);
         }
@@ -41,16 +41,30 @@ namespace Nhom11.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Create([Bind("Image,ImageFile,Name,Price,Stock,Status")]Product product)
+        public async Task<IActionResult> Create([Bind("Image,ImageFile,ImageFile,Name,Price,Stock,Status")]Product product)
         {
-            
-            _context.Products.Add(product);
-            _context.SaveChanges();
-            if (product == null)
+             if(ModelState.IsValid)
             {
-               return NotFound();
+                _context.Products.Add(product);
+                await _context.SaveChangesAsync();
+
+                if(product.ImageFile!=null)
+                {
+                    var fileName = product.Id.ToString() + Path.GetExtension(product.ImageFile.FileName);
+                    var uploadFolfder = Path.Combine(_environment.WebRootPath, "images");
+                    var uploadPath=Path.Combine(uploadFolfder, fileName);
+                    using (FileStream fs = System.IO.File.Create(uploadPath))
+                    {
+                        product.ImageFile.CopyTo(fs);
+                        fs.Flush();
+                    }
+                    product.Image = fileName;
+                    _context.Products.Add(product);
+                    _context.SaveChanges();
+                }
+
             }
-            return View();      
+            return RedirectToAction(nameof(Index));
         }
     }
 }
