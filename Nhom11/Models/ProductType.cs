@@ -15,9 +15,7 @@ namespace Nhom11.Models
         [Required(ErrorMessage = "{0} không được bỏ trống")]
         public string Name { get; set; }
 
-        [Display(Name = "Kích cỡ")]
-        public int Size { get; set; }
-
+        
         [DisplayName("Còn hiệu lực")]
         [DefaultValue(true)]
         public bool Status { get; set; } = true;
