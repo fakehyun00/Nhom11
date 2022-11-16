@@ -1,19 +1,23 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Nhom11.Data;
+using Nhom11.Models;
 
 namespace Nhom11.Controllers
 {
     public class ProductsController : Controller
     {
         private WebQuanAoContext _context;
-        public ProductsController(WebQuanAoContext context)
+        private IWebHostEnvironment _environment;
+        public ProductsController(WebQuanAoContext context,IWebHostEnvironment environment)
         {
             _context = context;
+            _environment = environment;
         }
         public IActionResult Index()
         {
-            var products = _context.Products.ToList();
-            return View(products);
+            var products=_context.Products.Where(p=>p.Size==1 );
+            
+                return View(products);
         }
         public IActionResult Detail(int? id)
 		{
@@ -31,6 +35,36 @@ namespace Nhom11.Controllers
         public IActionResult Login()
         {
             return View();
+        }
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Create([Bind("Image,ImageFile,ImageFile,Name,Price,Stock,Status")]Product product)
+        {
+             if(ModelState.IsValid)
+            {
+                _context.Products.Add(product);
+                await _context.SaveChangesAsync();
+
+                if(product.ImageFile!=null)
+                {
+                    var fileName = product.Id.ToString() + Path.GetExtension(product.ImageFile.FileName);
+                    var uploadFolfder = Path.Combine(_environment.WebRootPath, "images");
+                    var uploadPath=Path.Combine(uploadFolfder, fileName);
+                    using (FileStream fs = System.IO.File.Create(uploadPath))
+                    {
+                        product.ImageFile.CopyTo(fs);
+                        fs.Flush();
+                    }
+                    product.Image = fileName;
+                    _context.Products.Add(product);
+                    _context.SaveChanges();
+                }
+
+            }
+            return RedirectToAction(nameof(Index));
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -24,6 +25,10 @@ namespace Nhom11.Models
         [DefaultValue(0)]
         public int Price { get; set; } = 0;
 
+        [Display(Name = "Kích cỡ")]
+        public int Size { get; set; }
+
+
         [DisplayName("Tồn kho")]
         [DefaultValue(0)]
         public int Stock { get; set; } = 0;
@@ -36,6 +41,8 @@ namespace Nhom11.Models
 
         [DisplayName("Ảnh minh họa")]
         public string Image { get; set; }
+        [NotMapped]
+        public IFormFile ImageFile { get; set; }
 
         [DisplayName("Còn hiệu lực")]
         [DefaultValue(true)]

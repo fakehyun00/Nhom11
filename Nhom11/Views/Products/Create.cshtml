@@ -1,0 +1,24 @@
+﻿@model Product
+    @{
+        Layout="_LayoutProduct";
+    }
+<form asp-action="Create" method="POST"enctype="multipart/form-data">
+    <label asp-for="ImageFile">Product Image</label>
+    <input asp-for="ImageFile" border=1/><br />
+
+    <label asp-for="Name">Product Name</label>
+    <input asp-for="Name"/><br />
+
+    <label asp-for="Price">Price</label>
+    <input asp-for="Price"/><br />
+
+
+    <label asp-for="Stock">Stock</label>
+    <input asp-for="Stock"/><br />
+
+    <label asp-for="Status">Status</label>
+    <input asp-for="Status"/><br />
+
+   
+    <a asp-action="Index" class="btn btn-success">Add</a>
+</form>
