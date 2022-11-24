@@ -15,9 +15,17 @@ namespace Nhom11.Controllers
             var accounts = _context.Accounts.ToList();
             return View(accounts);
         }
-        public IActionResult Login()
+        public IActionResult Login(string Username,string Password)
         {
-            return View();
+            var account=_context.Accounts.FirstOrDefault(x => x.Username == Username && x.Password == Password);
+            if (account != null)
+            {
+                CookieOptions options = new CookieOptions();
+                options.Expires = DateTime.Now.AddDays(7);
+                HttpContext.Response.Cookies.Append("username", Username,options);
+                
+            }
+            return RedirectToAction("Login", "Home");
         }
     }
 }
