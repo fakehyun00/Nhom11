@@ -2,7 +2,7 @@
 @{
 	Layout="_LayoutCart";
 }
-		<form class="bg0 p-t-75 p-b-85">
+		<form asp-controller="Carts" asp-action="Purchase" class="bg0 p-t-75 p-b-85">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
@@ -11,24 +11,29 @@
 							<table class="table-shopping-cart">
 
 								<tr class="table_head">
-									<th class="column-1">Product</th>
-									
-									<th class="column-2">Size</th>
-									<th class="column-3">Price</th>
-									<th class="column-4">Quantity</th>
-									<th class="column-5">Total</th>
+									<th>Image</th>
+									<th>Product Name</th>
+									<th>Size</th>
+									<th>Price</th>
+									<th>Quantity</th>
+									<th>Total</th>
+									<th>Function</th>
 								</tr>
 								@foreach(var item in Model)
 								{
-								<tr class="table_row">
+								<tr>
 									
-									<td><img src="~/images/@item.Product.Image" style="width:100px;"/></td>
-									
+									<td><img src="~/images/@item.Product.Image" style="width:80px;"/></td>
+									<td>@item.Product.Name</td>
 									<td>@item.Product.Size</td>
 									<td>@item.Product.Price</td>
 									<td>@item.Quantity</td>
 									<td>@((item.Quantity*@item.Product.Price).ToString("#,##0"))</td>
-									
+									<td>
+										<form asp-action="Delete" asp-route-id="@item.Id">
+										<button class="btn btn-danger">&times;</button>
+										</form>
+									</td>
 								</tr>
 								}
 							</table>
@@ -108,7 +113,7 @@
 							</div>
 						</div>
 
-						<button class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
+						<button asp-action="Purchase" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
 							Proceed to Checkout
 						</button>
 					</div>
