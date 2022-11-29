@@ -16,7 +16,6 @@ namespace Nhom11.Controllers
         public IActionResult Index()
         {
             var products=_context.Products.Where(p=>p.Size==1 );
-            
                 return View(products);
         }
         public IActionResult Detail(int? id)
