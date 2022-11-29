@@ -65,5 +65,32 @@ namespace Nhom11.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
+        [HttpPost]
+        public async Task<IActionResult> Add(int ProductId, int Quantity, int Size)
+        {
+            string username = "dung";
+            var accountid = _context.Accounts.FirstOrDefault(a => a.Username == username).Id;
+            var productsize = _context.Products.Where(p => p.Size == Size);
+            var carts = _context.Carts.Where(c => c.AccountId == accountid && c.ProductId == ProductId);
+            if (carts != null)
+            {
+                Quantity += Quantity;
+                _context.SaveChanges();
+            }
+            else
+            {
+                Cart cart = new Cart
+                {
+                    AccountId = accountid,
+                    Quantity = Quantity,
+                    ProductId = ProductId,
+
+                };
+                _context.Carts.Add(cart);
+                _context.Carts.Update(cart);
+            }
+            _context.SaveChanges();
+            return RedirectToAction("Index", "Products");
+        }
     }
 }
