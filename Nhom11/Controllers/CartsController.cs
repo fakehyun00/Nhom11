@@ -59,7 +59,7 @@ namespace Nhom11.Controllers
             return RedirectToAction("Index","Products");
         }
         [HttpPost]
-        public async Task<IActionResult> Add(int ProductId,int Quantity)
+        public IActionResult Add(int ProductId,int Quantity)
         {
             string username = "dung";
             var accountid = _context.Accounts.FirstOrDefault(a => a.Username == username).Id;
@@ -78,9 +78,10 @@ namespace Nhom11.Controllers
                     ProductId = ProductId,
                 };
                 _context.Carts.Add(cart);
+                _context.Carts.Update(cart);
             }
             _context.SaveChanges();
-            return RedirectToAction("Index","Product");
+            return RedirectToAction("Index","Products");
         }
         public async Task<IActionResult> Delete(int ?id)
         {
@@ -96,6 +97,5 @@ namespace Nhom11.Controllers
         {
             return _context.Carts.Any(c => c.Id == id);
         }
-        
     }
 }
