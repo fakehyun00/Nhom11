@@ -27,5 +27,6 @@ namespace Nhom11.Controllers
             }
             return RedirectToAction("Login", "Home");
         }
+
     }
 }

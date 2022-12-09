@@ -2,7 +2,6 @@
 @{
 	Layout="_LayoutCart";
 }
-		<form asp-controller="Carts" asp-action="Purchase" class="bg0 p-t-75 p-b-85">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
@@ -11,21 +10,23 @@
 							<table class="table-shopping-cart">
 
 								<tr class="table_head">
-									<th>Image</th>
-									<th>Product Name</th>
-									<th>Size</th>
+									<th class="product">Product</th>
+									
+									<th>Name</th>
 									<th>Price</th>
 									<th>Quantity</th>
 									<th>Total</th>
 									<th>Function</th>
 								</tr>
+
 								@foreach(var item in Model)
 								{
 								<tr>
 									
-									<td><img src="~/images/@item.Product.Image" style="width:80px;"/></td>
+									<td class="product"><img src="~/images/@item.Product.Image" style="width:80px;"/></td>
+									
 									<td>@item.Product.Name</td>
-									<td>@item.Product.Size</td>
+
 									<td>@item.Product.Price</td>
 									<td>@item.Quantity</td>
 									<td>@((item.Quantity*@item.Product.Price).ToString("#,##0"))</td>
@@ -42,9 +43,9 @@
 						
 					</div>
 				</div>
-
-				<div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50">
-					<div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm">
+				<form asp-controller="Carts" asp-action="Purchase">
+				
+					<div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-178 m-r-40 m-lr-0-xl p-lr-15-sm">
 						<h4 class="mtext-109 cl2 p-b-30">
 							Cart Totals
 						</h4>
@@ -79,20 +80,17 @@
 									<span class="stext-112 cl8">
 										Calculate Shipping
 									</span>
-
+									
 									<div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
 										<div class="bor8 bg0 m-b-12">
-										<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="state" placeholder="ShippingAddress">
+										<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="ShippingAddress" placeholder="Shipping Address">
 									</div>
 									</div>
 
 									<div class="bor8 bg0 m-b-12">
-										<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="state" placeholder="ShippingPhone">
+										<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="ShippingPhone" placeholder="Shipping Phone">
 									</div>
 
-									
-									
-										
 								</div>
 							</div>
 						</div>
@@ -112,12 +110,14 @@
 								
 							</div>
 						</div>
-
-						<button asp-action="Purchase" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
+							
+						<button class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
 							Proceed to Checkout
 						</button>
+						
 					</div>
-				</div>
+				
+				</form>
 			</div>
 		</div>
-	</form>
+	

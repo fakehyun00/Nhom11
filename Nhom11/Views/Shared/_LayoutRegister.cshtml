@@ -16,22 +16,35 @@
         
         <fieldset>
           <legend><span class="number">1</span>Your basic info</legend>
-          <label for="name">Name:</label>
+          <label for="Username">Username:</label>
           <input type="text" id="name" name="user_name">
           
-          <label for="mail">Email:</label>
+          <label for="Password">Password:</label>
+          <input type="password" id="password" name="user_password">
+
+          <label for="email">Email:</label>
           <input type="email" id="mail" name="user_email">
           
-          <label for="password">Password:</label>
-          <input type="password" id="password" name="user_password">
-          
+          <label for="Phone">Phone:</label>
+          <input type="text" name="Phone">
+
+          <label for="Address">Address:</label>
+          <input type="text"  name="Address">
+
+          <label for="Fuulname">Fullname:</label>
+          <input type="text" name="Fullname">
+
+          <label for="IsAdmin">IsAdmin:</label>
+          <input type="checkbox" name="IsAdmin">
+
         </fieldset>
         
         
         @{
-            <a asp-controller="Home" asp-action="Register">
-            <button type="submit">Sign Up</button>
+             <button type="submit">
+            <a asp-controller="Accounts" asp-action="Register">
             </a>
+              Sign Up</button>
         }
               @RenderBody()
       </form>
