@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Nhom11.Data;
+using Nhom11.Models;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace Nhom11.Controllers
 {
@@ -28,5 +31,7 @@ namespace Nhom11.Controllers
             return RedirectToAction("Login", "Home");
         }
 
+
     }
+
 }
