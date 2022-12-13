@@ -2,8 +2,11 @@
 
 @model IEnumerable<Product>
 @{
+    
     Layout = "_LayoutProduct";
 }
+
+    <a asp-action="Create" class="btn btn-success">Add Product</a>
 <table class="table table-light">
     <thead class="table table-dark">
         <tr>
@@ -21,7 +24,7 @@
         {
         <tr>
             <td>
-                <img src="images/@item.Image"/>
+                <img src="~/images/@item.Image" style="width:50px;"/>
             </td>
             <td>@item.Name</td>
             <td>@item.Stock</td>
@@ -32,6 +35,7 @@
                 <form asp-action="Delete" asp-route-id="@item.Id" onsubmit="return confirm('Are you sure?')">
                 <button class="btn btn-danger">Delete</button>
                 </form>
+                
             </td>
              
         </tr>

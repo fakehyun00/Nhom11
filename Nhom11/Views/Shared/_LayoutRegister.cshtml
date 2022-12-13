@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model Account
+<!DOCTYPE html>
 <html>  
 <head>
         <meta charset="utf-8">
@@ -10,43 +11,40 @@
     </head>
     <body>
 
-      <form action="index.html" method="post">
+      <form asp-controller="Home" asp-action="Index" method="post">
       
         <h1>Sign Up</h1>
         
         <fieldset>
           <legend><span class="number">1</span>Your basic info</legend>
-          <label for="Username">Username:</label>
+          <label asp-for="Username">Username:</label>
           <input type="text" id="name" name="user_name">
           
-          <label for="Password">Password:</label>
+          <label asp-for="Password">Password:</label>
           <input type="password" id="password" name="user_password">
 
-          <label for="email">Email:</label>
+          <label asp-for="Email">Email:</label>
           <input type="email" id="mail" name="user_email">
           
-          <label for="Phone">Phone:</label>
+          <label asp-for="Phone">Phone:</label>
           <input type="text" name="Phone">
 
-          <label for="Address">Address:</label>
+          <label asp-for="Address">Address:</label>
           <input type="text"  name="Address">
 
-          <label for="Fuulname">Fullname:</label>
+          <label asp-for="FullName">Fullname:</label>
           <input type="text" name="Fullname">
 
-          <label for="IsAdmin">IsAdmin:</label>
+          <label asp-for="IsAdmin">IsAdmin:</label>
           <input type="checkbox" name="IsAdmin">
 
         </fieldset>
-        
-        
-        @{
+       @RenderBody() 
+             <form asp-action="Register">
              <button type="submit">
-            <a asp-controller="Accounts" asp-action="Register">
-            </a>
-              Sign Up</button>
-        }
-              @RenderBody()
+                Sign Up
+            </button>
+            </form>
       </form>
 
     </body>

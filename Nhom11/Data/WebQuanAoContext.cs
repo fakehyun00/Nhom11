@@ -12,6 +12,6 @@ namespace Nhom11.Data
         public DbSet<InvoiceDetail> InvoiceDetails { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductType> ProductTypes { get; set; }
-
+        public object Configuration { get; internal set; }
     }
 }
