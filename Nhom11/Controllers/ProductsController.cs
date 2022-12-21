@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Nhom11.Data;
 using Nhom11.Models;
 
@@ -17,6 +18,15 @@ namespace Nhom11.Controllers
         {
             var products=_context.Products.Where(p=>p.Size==1 );
                 return View(products);
+        }
+        public IActionResult Search(string searchkey="")
+        {
+            if (searchkey != null)
+            {
+                var products = _context.Products.Where(p => p.Name.ToUpper().Contains(searchkey.ToUpper()));
+                return View(products);
+            }
+            return View("Index");
         }
         public IActionResult Detail(int? id)
 		{
@@ -66,7 +76,7 @@ namespace Nhom11.Controllers
             return RedirectToAction(nameof(Index));
         }
         [HttpPost]
-        public async Task<IActionResult> Add(int ProductId, int Quantity, int Size)
+        public IActionResult Add(int ProductId, int Quantity, int Size)
         {
             string username = "dung";
             var accountid = _context.Accounts.FirstOrDefault(a => a.Username == username).Id;

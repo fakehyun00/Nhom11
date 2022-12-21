@@ -1,45 +1,42 @@
-﻿@using Nhom11.Models
-
-@model IEnumerable<Product>
+﻿@model IEnumerable<Product>
 @{
-    
-    Layout = "_LayoutProduct";
+    Layout = "_LayoutIndex";
 }
+<form asp-controller="Products">
 
     <a asp-action="Create" class="btn btn-success">Add Product</a>
-<table class="table table-light">
-    <thead class="table table-dark">
-        <tr>
-            <th>Image</th>
-            <th>Product</th>
-            <th>Stock</th>
-            <th>Price</th>
-            <th>Status</th>
-            <th>Function</th>
-        </tr>
-    </thead>
-    <tbody>
-      
-        @foreach(var item in Model)
-        {
-        <tr>
-            <td>
-                <img src="~/images/@item.Image" style="width:50px;"/>
-            </td>
-            <td>@item.Name</td>
-            <td>@item.Stock</td>
-            <td>@item.Price</td>
-            <td>@item.Status</td>
-              
-            <td>
-                <form asp-action="Delete" asp-route-id="@item.Id" onsubmit="return confirm('Are you sure?')">
-                <button class="btn btn-danger">Delete</button>
+    <table class="table table-light">
+        <thead class="table table-dark">
+            <tr>
+                <th>Image</th>
+                 <th>Name</th>
+                  <th>Product Type</th>
+                   <th>Size</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                    <th>Status</th>
+                    <th>Function</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Model)
+            {
+            <tr>
+                <td><img src="~/images/@item.Image" /></td>
+                <td>@item.Name</td>
+                <td>@item.ProductTypeId</td>
+                <td>@item.Size</td>
+                <td>@item.Price</td>
+                <td>@item.Stock</td>
+                <td>@item.Status</td>
+                <form asp-action="Delete" asp-route-id="@item.Id">
+                <td>
+                    <button class="btn btn-danger">&times;</button>
+                    <button class="btn btn-warning">Edit</button>
+                </td>
                 </form>
-                
-            </td>
-             
-        </tr>
-        }
-       
-    </tbody>
-</table>
+            </tr>
+            }
+        </tbody>
+    </table>
+</form>

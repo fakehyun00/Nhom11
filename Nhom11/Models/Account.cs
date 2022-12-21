@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Nhom11.Models
 {
@@ -21,6 +22,8 @@ namespace Nhom11.Models
         [StringLength(20, MinimumLength = 6, ErrorMessage = "{0} từ 6-20 kí tự")]
         public string Password { get; set; }
 
+      
+        [RegularExpression(@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}")]
         [DisplayName("Email")]
         [EmailAddress(ErrorMessage = "{0} không hợp lệ")]
         public string Email { get; set; }
@@ -36,12 +39,14 @@ namespace Nhom11.Models
         public string FullName { get; set; }
 
         [DisplayName("Là admin")]
-        [DefaultValue(true)]
-        public bool IsAdmin { get; set; } = true;
+        [DefaultValue(false)]
+        public bool IsAdmin { get; set; } = false;
 
         [DisplayName("Còn hoạt động")]
         [DefaultValue(true)]
         public bool Status { get; set; } = true;
+        [NotMapped]
+        public string LoginErrorMessage { get; set; } = null;
 
         // Collection reference property cho khóa ngoại từ Invoice
         public List<Invoice> Invoices { get; set; }

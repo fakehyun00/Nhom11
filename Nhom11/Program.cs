@@ -24,10 +24,11 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseSession();
 app.UseStaticFiles();
 
 app.UseRouting();
-app.UseSession();
+
 
 app.UseAuthorization();
 

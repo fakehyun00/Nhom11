@@ -1,0 +1,90 @@
+﻿@model Account
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Register</title>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.19.1/jquery.validate.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.js"></script>
+    <link rel="stylesheet" href="css/normalize.css">
+        <link href='https://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="~/registercss/style.css">
+</head>
+<body>
+    <h1>Register</h1>
+        <div id="form-register">
+            @using(Html.BeginForm("Register","Accounts",FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <table>
+                    
+                     <tr>
+                        <td>@Html.LabelFor(a=>a.Username)</td>
+                        <td>@Html.TextBoxFor(a=>a.Username)</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">@Html.ValidationMessageFor(a=>a.Username)</td>
+                    </tr>
+                    
+                   
+                  
+                     <tr>
+                        <td>@Html.LabelFor(a=>a.Password)</td>
+                        <td>@Html.PasswordFor(a=>a.Password)</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">@Html.ValidationMessageFor(a=>a.Password)</td>
+                    </tr>
+
+                    
+
+                    <tr>
+                        <td>@Html.LabelFor(a=>a.Email)</td>
+                        <td>@Html.TextBoxFor(a=>a.Email)</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">@Html.ValidationMessageFor(a=>a.Email)</td>
+                    </tr>
+
+                    <tr>
+                        <td>@Html.LabelFor(a=>a.Phone)</td>
+                        <td>@Html.TextBoxFor(a=>a.Phone)</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">@Html.ValidationMessageFor(a=>a.Phone)</td>
+                    </tr>
+
+                    <tr>
+                        <td>@Html.LabelFor(a=>a.Address)</td>
+                        <td>@Html.TextBoxFor(a=>a.Address)</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">@Html.ValidationMessageFor(a=>a.Address)</td>
+                    </tr>
+
+                     <tr>
+                        <td>@Html.LabelFor(a=>a.FullName)</td>
+                        <td>@Html.TextBoxFor(a=>a.FullName)</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">@Html.ValidationMessageFor(a=>a.FullName)</td>
+                    </tr>
+
+                    
+                </table>
+                
+                    <input type="submit" value="Register"  style=height:50px;/>
+                    <a href="@Url.Action("Login","Accounts")">Login</a>
+            }
+        </div>
+</body>
+</html>

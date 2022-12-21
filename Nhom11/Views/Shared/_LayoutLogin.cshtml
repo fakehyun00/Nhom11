@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model Account
+<!DOCTYPE html>
 <html>
 <head>
 	<title>Login Form</title>
@@ -8,39 +9,38 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
+    @using (Html.BeginForm("Login","Accounts"))
+    {
 	<img class="wave" src="~/loginimg/wave.png">
 	<div class="container">
 		<div class="img">
 			<img src="~/loginimg/bg.svg">
 		</div>
-		<div class="login-content">
-			<form action="index.html">
-				<img src="~/loginimg/avatar.svg">
-				<h2 class="title">Welcome</h2>
-           		<div class="input-div one">
-           		   <div class="i">
-           		   		<i class="fas fa-user"></i>
-           		   </div>
-           		   <div class="div">
-           		   		<h5>Username</h5>
-           		   		<input type="text" class="input">
-           		   </div>
-           		</div>
-           		<div class="input-div pass">
-           		   <div class="i"> 
-           		    	<i class="fas fa-lock"></i>
-           		   </div>
-           		   <div class="div">
-           		    	<h5>Password</h5>
-           		    	<input type="password" class="input">
-            	   </div>
-            	</div>
-            	<a href="#">Forgot Password?</a>
-            	<input type="submit" class="btn" value="Login" asp-controller="Products" asp-action="Index"/>
-            </form>
-        </div>
+		
+                @Html.AntiForgeryToken()
+                <table>
+                    
+                     <tr>
+                        <td>@Html.LabelFor(a=>a.Username)</td>
+                        <td>@Html.TextBoxFor(a=>a.Username)</td>
+                    </tr>
+                    <tr>
+                        <td >@Html.ValidationMessageFor(a=>a.Username)</td>
+                    </tr>
+                    
+                   
+                  
+                     <tr>
+                        <td>@Html.LabelFor(a=>a.Password)</td>
+                        <td>@Html.PasswordFor(a=>a.Password)</td>
+                    </tr>
+                    <tr>
+                        <td >@Html.ValidationMessageFor(a=>a.Password)</td>
+                    </tr>      
+                </table>
         @RenderBody()
     </div>
+    }
     <script type="text/javascript" src="~/loginjs/main.js"></script>
 </body>
 </html>

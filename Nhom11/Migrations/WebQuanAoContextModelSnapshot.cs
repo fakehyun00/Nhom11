@@ -42,6 +42,9 @@ namespace Nhom11.Migrations
                     b.Property<bool>("IsAdmin")
                         .HasColumnType("bit");
 
+                    b.Property<string>("LoginErrorMessage")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Password")
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
