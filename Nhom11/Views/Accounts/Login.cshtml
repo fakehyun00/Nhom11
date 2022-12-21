@@ -1,0 +1,71 @@
+﻿@model Account
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.19.1/jquery.validate.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/normalize.css">
+        <link href='https://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="~/registercss/style.css">
+</head>
+<body>
+    <h1>Login</h1>
+        <div id="form-login">
+            @using(Html.BeginForm("Login","Accounts",FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <table>
+                    
+                     <tr>
+                        <td>@Html.LabelFor(a=>a.Username)</td>
+                        <td>@Html.TextBoxFor(a=>a.Username)</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">@Html.ValidationMessageFor(a=>a.Username)</td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2">
+                            @if(ViewBag.error!=null)
+                        {
+                            <span>
+                                @ViewBag.LoginErrorMessage
+                            </span>
+                        }
+                    </td>
+                    </tr>
+              
+                     <tr>
+                        <td>@Html.LabelFor(a=>a.Password)</td>
+                        <td>@Html.PasswordFor(a=>a.Password)</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">@Html.ValidationMessageFor(a=>a.Password)</td>
+                    </tr>
+
+                     <tr>
+                        <td colspan="2" id="login-error-msg">
+                         <label id="label-error">
+                             @Html.DisplayFor(a=>a.LoginErrorMessage)
+                         </label>
+                        </td>
+                    </tr>
+              
+                </table>
+                
+                    <input type="submit" value="Login"  style=height:50px;/>
+                    <a href="@Url.Action("Register","Accounts")">Register</a>
+            }
+        </div>
+</body>
+</html>

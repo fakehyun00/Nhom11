@@ -3,7 +3,9 @@
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
-
+.field-validation-error {
+    color: red;
+}
 body {
   font-family: 'Nunito', sans-serif;
   color: #384047;
@@ -49,8 +51,11 @@ select {
 }
 
 input[type="radio"],
-input[type="checkbox"] {
-  margin: 0 4px 8px 0;
+input[type="checkbox"]
+input[type="submit"]
+{
+  margin: 0 4px 6px 0;
+
 }
 
 select {

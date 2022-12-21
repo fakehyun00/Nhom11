@@ -45,17 +45,17 @@
 			<div class="top-bar">
 				<div class="content-topbar flex-sb-m h-full container">
 					<div class="left-top-bar">
-						Free shipping for standard order over $100
+						Free shipping for standard order over 199.000 VND
 					</div>
 
 					<div class="right-top-bar flex-w h-full">
 							@{
-						<a asp-controller="Home" asp-action="Login" class="flex-c-m trans-04 p-lr-25">
-							My Account
+						<a asp-controller="Accounts" asp-action="Login" class="flex-c-m trans-04 p-lr-25">
+							Login
 						</a>}
 
 						@{
-						<a asp-controller="Home" asp-action="Register"  class="flex-c-m trans-04 p-lr-25">
+						<a asp-controller="Accounts" asp-action="Register"  class="flex-c-m trans-04 p-lr-25">
 							Register
 						</a>
 						}
@@ -548,7 +548,7 @@
 											</div>
 										</div>
 
-										<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+										<button asp-controller="Carts" asp-action="Add" asp-route-id="" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
 											Add to cart
 										</button>
 									</div>

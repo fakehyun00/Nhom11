@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Nhom11.Data;
 using Nhom11.Models;
+using Nhom11.Helpers;
 
 namespace Nhom11.Controllers
 {
@@ -12,9 +14,23 @@ namespace Nhom11.Controllers
         {
             _context = context;
         }
+
+        public List<Cart> Carts
+        {
+            get
+            {
+                var data = HttpContext.Session.Get<List<Cart>>("Cart");
+                if(data == null)
+                {
+                    data = new List<Cart>();
+                }
+                return data;
+            }
+        }
         public async Task<IActionResult> Index()
         {
-            string username = "dung";
+            string username = "vandung";
+            
             var carts=_context.Carts.Include(c=>c.Account).Include(c=>c.Product).Where(c=>c.Account.Username == username);
             return View(await carts.ToListAsync());
         }
@@ -25,7 +41,7 @@ namespace Nhom11.Controllers
         [HttpPost]
         public IActionResult Purchase(string ShippingAddress,string ShippingPhone)
         {
-            string username = "dung";
+            string username = "vandung";
             var cart=_context.Carts.Include(c=>c.Account).Include(c=>c.Product).Where(c=>c.Account.Username==username);
             var accountid=_context.Accounts.FirstOrDefault(a=>a.Username==username).Id;
             var total=cart.Sum(c=>c.Product.Price*c.Quantity);
@@ -69,27 +85,28 @@ namespace Nhom11.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(int ProductId,int Quantity,int Size)
         {
-            string username = "dung";
+            string username = "vandung";
             var accountid = _context.Accounts.FirstOrDefault(a => a.Username == username).Id;
             var productsize=_context.Products.Where(p=>p.Size == Size);
             var carts = _context.Carts.Where(c => c.AccountId == accountid && c.ProductId == ProductId);
-            if (carts!= null)
+            if (carts== null)
             {
-                Quantity += Quantity;
-                _context.SaveChanges();
-            }
-            else
-            {
-               Cart cart = new Cart
+                Cart cart = new Cart
                 {
                     AccountId = accountid,
                     Quantity = Quantity,
                     ProductId = ProductId,
-
                 };
-                _context.Carts.Add(cart);
+               await _context.Carts.AddAsync(cart);
             }
-            _context.SaveChanges();
+            
+            else
+            {
+               
+                Quantity += Quantity;
+                await _context.SaveChangesAsync();
+            }
+            await _context.SaveChangesAsync();
             return RedirectToAction("Index","Products");
         }
         public async Task<IActionResult> Delete(int ?id)

@@ -24,6 +24,7 @@ namespace Nhom11.Areas.Admin.Controllers
             var products = _context.Products.ToList();
             return View(products);
         }
+        
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null||_context.Products==null)
@@ -44,7 +45,7 @@ namespace Nhom11.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Create([Bind("Image,ImageFile,ImageFile,Name,Price,Stock,Status")] Product product)
+        public async Task<IActionResult> Create([Bind("Image,ImageFile,ImageFile,SKU,Name,Price,Stock,Status")] Product product)
         {
             if (ModelState.IsValid)
             {
