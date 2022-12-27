@@ -26,15 +26,15 @@
                 <td>@item.Name</td>
                 <td>@item.ProductTypeId</td>
                 <td>@item.Size</td>
-                <td>@item.Price</td>
+                <td>@item.Price.ToString("#,##0")</td>
                 <td>@item.Stock</td>
                 <td>@item.Status</td>
-                <form asp-action="Delete" asp-route-id="@item.Id">
+            
                 <td>
-                    <button class="btn btn-danger">&times;</button>
-                    <button class="btn btn-warning">Edit</button>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">&times;</a>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Edit</a>
                 </td>
-                </form>
+        
             </tr>
             }
         </tbody>

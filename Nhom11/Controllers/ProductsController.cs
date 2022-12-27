@@ -50,7 +50,7 @@ namespace Nhom11.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Create([Bind("Image,ImageFile,ImageFile,SKU,Name,Price,Stock,Status")]Product product)
+        public async Task<IActionResult> Create([Bind("Image,ImageFile,ImageFile,SKU,Name,ProductType,Price,Stock,Status")]Product product)
         {
              if(ModelState.IsValid)
             {
@@ -101,6 +101,11 @@ namespace Nhom11.Controllers
             }
             _context.SaveChanges();
             return RedirectToAction("Index", "Products");
+        }
+        public IActionResult SearchResult(string keyword)
+        {
+            var products = _context.Products.Where(p => p.Name.Contains("%"+keyword+"%")&&p.Size==1);
+            return View(products.OrderBy(p=>p.Name));
         }
     }
 }

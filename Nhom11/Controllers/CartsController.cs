@@ -27,7 +27,9 @@ namespace Nhom11.Controllers
                 return data;
             }
         }
-        public async Task<IActionResult> Index()
+
+
+        public async Task<object> Index()
         {
             string username = "vandung";
             

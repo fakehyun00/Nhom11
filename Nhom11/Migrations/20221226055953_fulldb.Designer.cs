@@ -12,7 +12,7 @@ using Nhom11.Data;
 namespace Nhom11.Migrations
 {
     [DbContext(typeof(WebQuanAoContext))]
-    [Migration("20221219185303_fulldb")]
+    [Migration("20221226055953_fulldb")]
     partial class fulldb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -43,9 +43,6 @@ namespace Nhom11.Migrations
 
                     b.Property<bool>("IsAdmin")
                         .HasColumnType("bit");
-
-                    b.Property<string>("LoginErrorMessage")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
                         .HasMaxLength(20)
