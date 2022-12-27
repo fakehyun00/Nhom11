@@ -1,20 +1,18 @@
-﻿@model IEnumerable<Account>
+﻿@model IEnumerable<Invoice>
 @{
     Layout = "_LayoutIndex";
 }
 <form asp-controller="Accounts">
-
-    <a asp-action="Create" class="btn btn-success">Add Account</a>
+       <a asp-action="Create" class="btn btn-success">Add Invoice</a>
     <table class="table table-light">
         <thead class="table table-dark">
             <tr>
-                <th>Username</th>
-                 <th>Password</th>
-                  <th>Email</th>
-                   <th>Phone</th>
-                    <th>Address</th>
-                    <th>FullName</th>
-                    <th>IsAdmin</th>
+                <th>Code</th>
+                 <th>AccountID</th>
+                  <th>IssuedDate</th>
+                   <th>ShippingAddress</th>
+                    <th>ShippingPhone</th>
+                    <th>Total</th>
                     <th>Status</th>
                     <th>Function</th>
             </tr>
@@ -23,13 +21,12 @@
             @foreach(var item in Model)
             {
             <tr>
-                <td>@item.Username</td>
-                <td>@item.Password</td>
-                <td>@item.Email</td>
-                <td>@item.Phone</td>
-                <td>@item.Address</td>
-                <td>@item.FullName</td>
-                <td>@item.IsAdmin</td>
+                <td>@item.Code</td>
+                <td>@item.AccountId</td>
+                <td>@item.IssuedDate</td>
+                <td>@item.ShippingAddress</td>
+                <td>@item.ShippingPhone</td>
+                <td>@item.Total.ToString("#,##0")</td>
                 <td>@item.Status</td>
 
                 <td>

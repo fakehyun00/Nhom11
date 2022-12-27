@@ -1,8 +1,8 @@
-﻿@model Product
+﻿@model Nhom11.Models.Account
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Product</title>
+	<title>Account</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -37,56 +37,63 @@
 <!--===============================================================================================-->
 </head>
 <body>
-<h1>Create</h1>
-<h4>Product</h4>
+<h1>Edit</h1>
+<h4>Account</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create" enctype="multipart/form-data">
+        <form asp-action="Edit" >
+            <input type="hidden" asp-for="Id"/>
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="@Model.SKU" class="control-label"></label>
-                <input asp-for="@Model.SKU" class="form-control" />
-                <span asp-validation-for="@Model.SKU" class="text-danger"></span>
+                
+                <label asp-for="Username" class="control-label"></label>
+                <input asp-for="Username" class="form-control" />
+                <span asp-validation-for="Username" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="@Model.Name" class="control-label"></label>
-                <input asp-for="@Model.Name" class="form-control" />
-                <span asp-validation-for="@Model.Name" class="text-danger"></span>
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
             </div>
 
-            @*<div class="form-group">
-                <label asp-for="@Model.ProductTypeId" class="control-label"></label>
-                <input asp-for="@Model.ProductTypeId" class="form-control" min="1"/>
-                <span asp-validation-for="@Model.ProductTypeId" class="text-danger" ></span>
-            </div>*@
-            
             <div class="form-group">
-                <label asp-for="@Model.Size" class="control-label"></label>
-                <input asp-for="@Model.Size" class="form-control" min="1" max="3"/>
-                <span asp-validation-for="@Model.Size" class="text-danger"></span>
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" min="1"/>
+                <span asp-validation-for="Email" class="text-danger" ></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Phone" class="control-label"></label>
+                <input asp-for="Phone" class="form-control" min="1" max="3"/>
+                <span asp-validation-for="Phone" class="text-danger"></span>
             </div>
 
           
             <div class="form-group">
-                <label asp-for="@Model.Price" class="control-label"></label>
-                <input asp-for="@Model.Price" class="form-control" />
-                <span asp-validation-for="@Model.Price" class="text-danger"></span>
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
             </div>
 
             
             <div class="form-group">
-                <label asp-for="@Model.ImageFile" class="control-label"></label>
-                <input asp-for="@Model.ImageFile" class="form-control" />
-                <span asp-validation-for="@Model.Image" class="text-danger"></span>
+                <label asp-for="FullName" class="control-label"></label>
+                <input asp-for="FullName" class="form-control" />
+                <span asp-validation-for="FullName" class="text-danger"></span>
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="@Model.Status" /> @Html.DisplayNameFor(model => model.Status)
+                    <input class="form-check-input" asp-for="IsAdmin" /> @Html.DisplayNameFor(model => model.IsAdmin)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Status" /> @Html.DisplayNameFor(model => model.Status)
                 </label>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
@@ -97,3 +104,6 @@
 </div>
 </body>
 </html>
+@section Scripts{
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

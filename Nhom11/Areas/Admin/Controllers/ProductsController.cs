@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Nhom11.Data;
 using Nhom11.Models;
@@ -19,20 +20,20 @@ namespace Nhom11.Areas.Admin.Controllers
         }
 
 
-         public IActionResult Index()
+        public IActionResult Index()
         {
             var products = _context.Products.ToList();
             return View(products);
         }
-        
+
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null||_context.Products==null)
+            if (id == null || _context.Products == null)
             {
                 return NotFound();
             }
-            var product = await _context.Products.FirstOrDefaultAsync(m=>m.Id==id);
-            if(product==null)
+            var product = await _context.Products.FirstOrDefaultAsync(m => m.Id == id);
+            if (product == null)
             {
                 return NotFound();
             }
@@ -45,12 +46,12 @@ namespace Nhom11.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Create([Bind("Image,ImageFile,ImageFile,SKU,Name,Price,Stock,Status")] Product product)
+        public IActionResult Create([Bind("Image,ImageFile,SKU,Name,Size,Price,Stock,Status")] Product product)
         {
             if (ModelState.IsValid)
             {
                 _context.Products.Add(product);
-                await _context.SaveChangesAsync();
+                _context.SaveChanges();
 
                 if (product.ImageFile != null)
                 {
@@ -69,6 +70,56 @@ namespace Nhom11.Areas.Admin.Controllers
 
             }
             return RedirectToAction(nameof(Index));
+        }
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if(id==null||_context.Products==null)
+            {
+                return NotFound();
+            }
+            var product=await _context.Products.FindAsync(id);
+            if(product==null)
+            {
+                return NotFound();
+            }
+            ViewData["ProductTypeId"] = new SelectList(_context.ProductTypes, "Id", "Name", product.ProductTypeId);
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int? id, [Bind("Image,ImageFile,SKU,Name, ProductType, Size, Price, Status")] Product product)
+        {
+            if (id != product.Id)
+            {
+              return NotFound();
+            }
+            if(ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(product);
+                    await _context.SaveChangesAsync();
+                }catch(DbUpdateConcurrencyException)
+                {
+                    if(!ProductExists(product.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+            }
+            else
+            {
+                return NotFound();
+            }
+            return RedirectToAction(nameof(Index));
+        }
+        private bool ProductExists(int id)
+        {
+            return _context.Products.Any(p => p.Id == id);
         }
     }
 }
